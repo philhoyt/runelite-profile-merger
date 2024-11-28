@@ -10,7 +10,6 @@ import {
   Grid
 } from '@mui/material';
 import UploadFileIcon from '@mui/icons-material/UploadFile';
-import DownloadIcon from '@mui/icons-material/Download';
 import MergeIcon from '@mui/icons-material/MergeType';
 import SettingsDisplay from './components/SettingsDisplay';
 

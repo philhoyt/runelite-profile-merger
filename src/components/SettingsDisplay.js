@@ -41,12 +41,6 @@ function SettingsDisplay({
   onSelectAll,
   onDeselectAll
 }) {
-  console.log('SettingsDisplay Props:', {
-    title,
-    settingsCount: settings ? Object.keys(settings).length : 0,
-    selectedCount: selectedSettings ? selectedSettings.length : 0,
-    selectedSettings
-  });
 
   const [isLoading, setIsLoading] = useState(false);
   const [debouncedSearchTerm, setDebouncedSearchTerm] = useState(searchTerm);
@@ -247,26 +241,20 @@ function SettingsDisplay({
               otherSettings={otherSettings}
               selectedSettings={selectedSettings}
               onSettingToggle={(key, selected) => {
-                console.log('Single Toggle:', { key, selected, currentSelected: selectedSettings });
                 if (selected) {
                   const newSelected = [...selectedSettings, key];
-                  console.log('Adding setting:', { key, newSelected });
                   onSettingToggle(newSelected);
                 } else {
                   const newSelected = selectedSettings.filter(k => k !== key);
-                  console.log('Removing setting:', { key, newSelected });
                   onSettingToggle(newSelected);
                 }
               }}
               onBulkToggle={(keys, selected) => {
-                console.log('Bulk Toggle:', { keys, selected, currentSelected: selectedSettings });
                 if (selected) {
                   const newSelected = [...new Set([...selectedSettings, ...keys])];
-                  console.log('Adding bulk settings:', { keys, newSelected });
                   onSettingToggle(newSelected);
                 } else {
                   const newSelected = selectedSettings.filter(k => !keys.includes(k));
-                  console.log('Removing bulk settings:', { keys, newSelected });
                   onSettingToggle(newSelected);
                 }
               }}

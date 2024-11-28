@@ -26,12 +26,6 @@ function PluginSection({
   expanded,
   onExpand
 }) {
-  console.log('PluginSection Props:', {
-    pluginName,
-    settingsCount: Object.keys(settings).length,
-    selectedCount: selectedSettings.length,
-    selectedSettings
-  });
 
   const [localExpanded, setLocalExpanded] = useState(expanded);
 
@@ -69,12 +63,6 @@ function PluginSection({
     event.stopPropagation();
     const keys = Object.keys(settings);
     const allSelected = keys.every(key => selectedSettings.includes(key));
-    console.log('handleSelectAll:', {
-      pluginName,
-      keys,
-      allSelected,
-      action: allSelected ? 'deselecting' : 'selecting'
-    });
     onBulkToggle(keys, !allSelected);
   };
 
@@ -84,11 +72,6 @@ function PluginSection({
     const isSelected = selectedSettings.includes(key);
 
     const handleToggle = () => {
-      console.log('Row Toggle:', {
-        key,
-        currentlySelected: isSelected,
-        action: isSelected ? 'deselecting' : 'selecting'
-      });
       onSettingToggle(key, !isSelected);
     };
 

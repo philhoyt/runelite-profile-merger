@@ -115,10 +115,6 @@ function App() {
   };
 
   const handleSettingsToggle = (profile, setSelectedSettings) => (newSelected) => {
-    console.log('handleSettingsToggle:', { 
-      currentSelected: profile === profile1 ? selectedSettings1 : selectedSettings2,
-      newSelected 
-    });
     setSelectedSettings(newSelected);
   };
 

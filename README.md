@@ -1,3 +1,5 @@
+[<img align="center" width="192px" alt="RuneLite Profile Merger Logo" src="public/logo192.png"/>](https://philhoyt.github.io/runelite-profile-merger)
+
 # RuneLite Profile Merger
 
 A web application that helps you merge settings from multiple RuneLite profiles. This tool makes it easy to combine specific settings from different profiles while maintaining a clear overview of what's being merged.

@@ -16,15 +16,18 @@ import SettingsDisplay from './components/SettingsDisplay';
 function App() {
   const [profile1, setProfile1] = useState(null);
   const [profile2, setProfile2] = useState(null);
+  const [filename1, setFilename1] = useState('');
+  const [filename2, setFilename2] = useState('');
   const [selectedSettings1, setSelectedSettings1] = useState([]);
   const [selectedSettings2, setSelectedSettings2] = useState([]);
   const [searchTerm1, setSearchTerm1] = useState('');
   const [searchTerm2, setSearchTerm2] = useState('');
   const [alert, setAlert] = useState({ open: false, message: '', severity: 'info' });
 
-  const handleFileSelect = (profileSetter, settingsSelector) => (event) => {
+  const handleFileSelect = (profileSetter, settingsSelector, filenameSetter) => (event) => {
     const file = event.target.files[0];
     if (file) {
+      filenameSetter(file.name);
       const reader = new FileReader();
       reader.onload = (e) => {
         try {
@@ -130,7 +133,7 @@ function App() {
             style={{ display: 'none' }}
             id="profile1-button"
             type="file"
-            onChange={handleFileSelect(setProfile1, setSelectedSettings1)}
+            onChange={handleFileSelect(setProfile1, setSelectedSettings1, setFilename1)}
           />
           <label htmlFor="profile1-button">
             <Button
@@ -149,7 +152,7 @@ function App() {
             style={{ display: 'none' }}
             id="profile2-button"
             type="file"
-            onChange={handleFileSelect(setProfile2, setSelectedSettings2)}
+            onChange={handleFileSelect(setProfile2, setSelectedSettings2, setFilename2)}
           />
           <label htmlFor="profile2-button">
             <Button
@@ -175,27 +178,31 @@ function App() {
 
       <Grid container spacing={2}>
         <Grid item xs={6}>
+          <Typography variant="h6" gutterBottom>
+            Profile 1 {filename1 && `(${filename1})`}
+          </Typography>
           <SettingsDisplay
-            title="Profile 1"
-            settings={profile1}
-            otherSettings={profile2}
+            profile={profile1}
+            otherProfile={profile2}
             selectedSettings={selectedSettings1}
-            onSettingToggle={handleSettingsToggle(profile1, setSelectedSettings1)}
+            onSettingsChange={handleSettingsToggle(profile1, setSelectedSettings1)}
             searchTerm={searchTerm1}
-            onSearchChange={setSearchTerm1}
+            onSearchChange={(e) => setSearchTerm1(e.target.value)}
             onSelectAll={() => setSelectedSettings1(Object.keys(profile1 || {}))}
             onDeselectAll={() => setSelectedSettings1([])}
           />
         </Grid>
         <Grid item xs={6}>
+          <Typography variant="h6" gutterBottom>
+            Profile 2 {filename2 && `(${filename2})`}
+          </Typography>
           <SettingsDisplay
-            title="Profile 2"
-            settings={profile2}
-            otherSettings={profile1}
+            profile={profile2}
+            otherProfile={profile1}
             selectedSettings={selectedSettings2}
-            onSettingToggle={handleSettingsToggle(profile2, setSelectedSettings2)}
+            onSettingsChange={handleSettingsToggle(profile2, setSelectedSettings2)}
             searchTerm={searchTerm2}
-            onSearchChange={setSearchTerm2}
+            onSearchChange={(e) => setSearchTerm2(e.target.value)}
             onSelectAll={() => setSelectedSettings2(Object.keys(profile2 || {}))}
             onDeselectAll={() => setSelectedSettings2([])}
           />

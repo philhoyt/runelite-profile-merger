@@ -189,7 +189,7 @@ function App() {
             Profile 1 {filename1 && `(${filename1})`}
           </Typography>
           <SettingsDisplay
-            title="Profile 1"
+            //title="Profile 1"
             settings={profile1}
             otherSettings={profile2}
             selectedSettings={selectedSettings1}
@@ -205,7 +205,7 @@ function App() {
             Profile 2 {filename2 && `(${filename2})`}
           </Typography>
           <SettingsDisplay
-            title="Profile 2"
+            //title="Profile 2"
             settings={profile2}
             otherSettings={profile1}
             selectedSettings={selectedSettings2}

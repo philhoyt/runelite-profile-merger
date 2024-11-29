@@ -13,6 +13,7 @@ import {
 import SearchIcon from '@mui/icons-material/Search';
 import debounce from 'lodash.debounce';
 import { groupSettingsByPlugin } from '../utils/settingsUtils';
+import debug from '../utils/debug';
 import PluginSection from './PluginSection';
 
 const COLORS = {
@@ -41,6 +42,13 @@ function SettingsDisplay({
   onSelectAll,
   onDeselectAll
 }) {
+  debug('SettingsDisplay Render', {
+    title,
+    hasSettings: !!settings,
+    settingsCount: settings ? Object.keys(settings).length : 0,
+    selectedCount: selectedSettings.length,
+    searchTerm
+  });
 
   const [isLoading, setIsLoading] = useState(false);
   const [debouncedSearchTerm, setDebouncedSearchTerm] = useState(searchTerm);
@@ -68,12 +76,12 @@ function SettingsDisplay({
   }, []);
 
   // Debounced search handler
-  const debouncedSearch = useCallback(
-    debounce((value) => {
+  const debouncedSearch = useMemo(
+    () => debounce((value) => {
       setDebouncedSearchTerm(value);
       setIsLoading(false);
     }, 300),
-    []
+    [setDebouncedSearchTerm, setIsLoading]
   );
 
   const handleSearchChange = (e) => {
@@ -128,9 +136,18 @@ function SettingsDisplay({
 
   // Group settings by plugin
   const pluginGroups = useMemo(() => {
+    debug('Creating plugin groups', {
+      hasSettings: !!settings,
+      settingsCount: settings ? Object.keys(settings).length : 0
+    });
+
     if (!settings) return {};
     
     const grouped = groupSettingsByPlugin(settings);
+    debug('Grouped settings', {
+      pluginCount: Object.keys(grouped).length,
+      firstPlugin: Object.keys(grouped)[0]
+    });
     
     // Filter groups based on search term
     if (debouncedSearchTerm) {

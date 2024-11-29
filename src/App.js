@@ -12,6 +12,7 @@ import {
 import UploadFileIcon from '@mui/icons-material/UploadFile';
 import MergeIcon from '@mui/icons-material/MergeType';
 import SettingsDisplay from './components/SettingsDisplay';
+import debug from './utils/debug';
 
 function App() {
   const [profile1, setProfile1] = useState(null);
@@ -41,6 +42,12 @@ function App() {
                 settings[key.trim()] = value.trim();
               }
             }
+          });
+          
+          debug('File loaded', {
+            filename: file.name,
+            settingsCount: Object.keys(settings).length,
+            sampleKeys: Object.keys(settings).slice(0, 3)
           });
           
           profileSetter(settings);
@@ -182,10 +189,11 @@ function App() {
             Profile 1 {filename1 && `(${filename1})`}
           </Typography>
           <SettingsDisplay
-            profile={profile1}
-            otherProfile={profile2}
+            title="Profile 1"
+            settings={profile1}
+            otherSettings={profile2}
             selectedSettings={selectedSettings1}
-            onSettingsChange={handleSettingsToggle(profile1, setSelectedSettings1)}
+            onSettingToggle={handleSettingsToggle(profile1, setSelectedSettings1)}
             searchTerm={searchTerm1}
             onSearchChange={(e) => setSearchTerm1(e.target.value)}
             onSelectAll={() => setSelectedSettings1(Object.keys(profile1 || {}))}
@@ -197,10 +205,11 @@ function App() {
             Profile 2 {filename2 && `(${filename2})`}
           </Typography>
           <SettingsDisplay
-            profile={profile2}
-            otherProfile={profile1}
+            title="Profile 2"
+            settings={profile2}
+            otherSettings={profile1}
             selectedSettings={selectedSettings2}
-            onSettingsChange={handleSettingsToggle(profile2, setSelectedSettings2)}
+            onSettingToggle={handleSettingsToggle(profile2, setSelectedSettings2)}
             searchTerm={searchTerm2}
             onSearchChange={(e) => setSearchTerm2(e.target.value)}
             onSelectAll={() => setSelectedSettings2(Object.keys(profile2 || {}))}

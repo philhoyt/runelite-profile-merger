@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/runelite-profile-merger/static/css/main.e6c13ad2.css",
-    "main.js": "/runelite-profile-merger/static/js/main.a9a2688a.js",
+    "main.js": "/runelite-profile-merger/static/js/main.3cc6f24d.js",
     "static/js/453.1667fcbd.chunk.js": "/runelite-profile-merger/static/js/453.1667fcbd.chunk.js",
     "index.html": "/runelite-profile-merger/index.html",
     "main.e6c13ad2.css.map": "/runelite-profile-merger/static/css/main.e6c13ad2.css.map",
-    "main.a9a2688a.js.map": "/runelite-profile-merger/static/js/main.a9a2688a.js.map",
+    "main.3cc6f24d.js.map": "/runelite-profile-merger/static/js/main.3cc6f24d.js.map",
     "453.1667fcbd.chunk.js.map": "/runelite-profile-merger/static/js/453.1667fcbd.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.e6c13ad2.css",
-    "static/js/main.a9a2688a.js"
+    "static/js/main.3cc6f24d.js"
   ]
 }
